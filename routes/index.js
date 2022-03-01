@@ -23,8 +23,8 @@ router.get('/scores', (req, res) => {
 })
 
 router.post('/clearScores', (req, res) => {
-  if (!req.body.key || req.body.key != "CodingPirates") return res.send("Invalid key.");
+  if (!req.body.key || req.body.key != "clearCPP") return res.send("Invalid key.");
 
-  fs.writeFile('./highscores.txt', '', () => console.log("Cleared file"))
+  fs.writeFile('./highscores.txt', '', () => {return res.send("Cleared file")})
 })
 module.exports = router;
