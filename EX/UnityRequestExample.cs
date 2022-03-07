@@ -11,7 +11,8 @@ public class Example : MonoBehaviour
     public void getScores()
     {
         UnityWebRequest req = UnityWebReqest.Get(root + pages[1]);
-        return req.downloadHandler.text;
+        yield return req.SendWebRequest();
+        //return req.downloadHandler.text;
     }
 
     public void submit()
