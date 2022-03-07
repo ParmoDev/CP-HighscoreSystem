@@ -11,9 +11,9 @@ router.post('/submit', (req, res) => {
   if (!req.body.key || req.body.key != "CodingPirates") return res.send("Invalid key.");
   if (!req.body.username || !req.body.score) return res.send('Please include username AND score.\nExample: {"key": "key", "username": "codingpirates", "score": 45}')
 
-  fs.appendFileSync('./highscores.txt', req.body.username + ": " + req.body.score + "\n")
+  fs.appendFileSync('./highscores.txt', `${req.body.username}: ${req.body.score}\n`)
 
-  res.json(req.body.score + " added to highscore list!")
+  res.json(`${req.body.score} added to highscore list!`)
 })
 
 router.get('/scores', (req, res) => {
@@ -23,8 +23,9 @@ router.get('/scores', (req, res) => {
 })
 
 router.post('/clearScores', (req, res) => {
-  if (!req.body.key || req.body.key != "clearCPP") return res.send("Invalid key.");
+  if (!req.body.key || req.body.key != "clearCPP") return res.send("Invalid or no key.");
 
   fs.writeFile('./highscores.txt', '', () => {return res.send("Cleared file")})
 })
+
 module.exports = router;
